@@ -9,7 +9,7 @@ import UIKit
 import SwifteriOS
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var sentimentLabel: UILabel!
@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.textField.delegate = self
     }
     
     @IBAction func predictionPressed(_ sender: UIButton) {
@@ -94,6 +95,11 @@ class ViewController: UIViewController {
         } else {
             self.sentimentLabel.text = "🤬"
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
     }
     
 }
